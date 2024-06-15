@@ -7,7 +7,7 @@ const Login = async (email, password) => {
         const response = await axios.post(`${BACKEND_ORIGIN_URL}/user/login`,{email , password});
         console.log("Response Structure Login: ",response);
         console.log("Response Data Login: ",response.data);
-        return response.data;
+        return response;
     } catch (error) {
         return error.response.data
     }
@@ -18,7 +18,7 @@ const Register = async (name, email, mobile, password) => {
         const response = await axios.post(`${BACKEND_ORIGIN_URL}/user/register`,{name, email , password});
         console.log("Response Structure Register: ",response);
         console.log("Response Data Register: ",response.data);
-        return response.data;
+        return response;
     } catch (error) {
         return error.response.data
     }

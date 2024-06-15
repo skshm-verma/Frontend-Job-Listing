@@ -12,19 +12,22 @@ const RegisterPage = () => {
     const handleRegister = async () => {
         const response = await Register(name, email, mobile, password);
         if(response.status === 201){
+            localStorage.setItem("email", email);
+			localStorage.setItem("password", password);
             setShowlogInRedirect(true);
         }
     }
 
     return (
         <div>
-            <h1 className='text-center'>Login Page</h1>
+            <h1 className='text-center'>Register Page</h1>
             <div className='my-3 flex flex-col justify-center items-center gap-2'>
             <div className='inline-block mx-1'>
                     <span>Name</span>
                     <input
                         type="text"
                         placeholder='eg. John Doe'
+                        value={name}
                         onInput={(e) => setName(e.target.value)}
                         className='border mx-1 p-2 rounded-md'
                     />
@@ -34,6 +37,7 @@ const RegisterPage = () => {
                     <input
                         type="email"
                         placeholder='eg. JohnDoe@gmail.com'
+                        value={email}
                         onInput={(e) => setEmail(e.target.value)}
                         className='border mx-1 p-2 rounded-md'
                     />
@@ -43,6 +47,7 @@ const RegisterPage = () => {
                     <input
                         type="tel"
                         placeholder='eg. 999990000'
+                        value={mobile}
                         onInput={(e) => setMobile(e.target.value)}
                         className='border mx-1 p-2 rounded-md'
                     />
@@ -52,6 +57,7 @@ const RegisterPage = () => {
                     <input
                         type="password"
                         placeholder='eg. qwerty'
+                        value={password}
                         onInput={(e) => setPassword(e.target.value)}
                         className='border mx-1 p-2 rounded-md'
                     />
