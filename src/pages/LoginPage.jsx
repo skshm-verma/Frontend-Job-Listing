@@ -6,21 +6,21 @@ import image1 from '../assets/imageRegister.png'
 
 const LoginPage = () => {
 
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [redirectToHome, setRedirectToHome] = useState(false);
 
-    useEffect(() => {
-        const storedEmail = localStorage.getItem("email");
-        const storedPassword = localStorage.getItem("password");
-        console.log("Email: ", storedEmail, " Password: ", storedPassword);
-        if (storedEmail) {
-            setEmail(storedEmail);
-        }
-        if (storedPassword) {
-            setPassword(storedPassword);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const storedEmail = localStorage.getItem("email");
+    //     const storedPassword = localStorage.getItem("password");
+    //     console.log("Email: ", storedEmail, " Password: ", storedPassword);
+    //     if (storedEmail) {
+    //         setEmail(storedEmail);
+    //     }
+    //     if (storedPassword) {
+    //         setPassword(storedPassword);
+    //     }
+    // }, []);
 
     const handleLogin = async () => {
         const response = await Login(email, password);

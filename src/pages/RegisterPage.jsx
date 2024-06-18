@@ -1,21 +1,26 @@
 import React, { useState } from 'react'
-import { Register } from '../api/User';
+import { Register , Login } from '../api/User';
 import { Navigate } from 'react-router-dom';
 import image1 from '../assets/imageRegister.png'
 
 const RegisterPage = () => {
-    const [name, setName] = useState();
-    const [email, setEmail] = useState();
-    const [mobile, setMobile] = useState();
-    const [password, setPassword] = useState();
-    const [showLogInRedirect, setShowlogInRedirect] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [mobile, setMobile] = useState('');
+    const [password, setPassword] = useState('');
+    const [showLogInRedirect, setShowLogInRedirect] = useState(false);
 
     const handleRegister = async () => {
         const response = await Register(name, email, mobile, password);
         if (response.status === 201) {
-            localStorage.setItem("email", email);
-            localStorage.setItem("password", password);
-            setShowlogInRedirect(true);
+            const loginResponse = await Login(email, password);
+            console.log("LoginResponse In RegisterPage: ",loginResponse)
+			if (loginResponse.status === 200) {
+				const { data } = loginResponse;
+				const { token } = data;
+				localStorage.setItem("token", token);
+				setShowLogInRedirect(true);
+			}
         }
     }
 
@@ -80,7 +85,7 @@ const RegisterPage = () => {
                 <span className='absolute z-20 text-white right-28 top-12 text-4xl font-dm'>Your Personal Job Finder</span>
                 <img className='w-full h-screen' src={image1} alt="" />
             </div>
-            {showLogInRedirect && <Navigate to='/login' />}
+            {showLogInRedirect && <Navigate to='/' />}
         </div>
     )
 }
