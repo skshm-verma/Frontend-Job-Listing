@@ -1,11 +1,12 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Login } from '../api/User'
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import image1 from '../assets/imageRegister.png'
 
 const LoginPage = () => {
-
+    
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [redirectToHome, setRedirectToHome] = useState(false);
@@ -65,13 +66,15 @@ const LoginPage = () => {
                     >Sign In</button>
                     <div className='mx-2'>
                         <span className='tracking-tight text-[#525252]'>Don’t have an account?</span>
-                        <a href="" className='px-2 font-semibold underline underline-offset-2 hover:text-[#ED5353] duration-300'>Sign Up</a>
+                        <button
+                        onClick={ () => { navigate('/register')}} 
+                        className='px-2 font-semibold underline underline-offset-2 hover:text-[#ED5353] duration-300'>Sign Up</button>
                     </div>
                 </div>
             </div>
             <div className='w-[40%] relative'>
                 <span className='absolute z-20 text-white right-28 top-12 text-4xl font-dm'>Your Personal Job Finder</span>
-                <img className='w-full h-screen' src={image1} alt="" />
+                <img className='w-full h-screen' src={image1} alt="LandingPageImage" />
             </div>
             {redirectToHome && <Navigate to="/" />}
         </div>

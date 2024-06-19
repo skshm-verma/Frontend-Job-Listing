@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { Register , Login } from '../api/User';
-import { Navigate } from 'react-router-dom';
+import { Register, Login } from '../api/User';
+import { Navigate, useNavigate } from 'react-router-dom';
 import image1 from '../assets/imageRegister.png'
 
 const RegisterPage = () => {
+    const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [mobile, setMobile] = useState('');
@@ -14,13 +15,13 @@ const RegisterPage = () => {
         const response = await Register(name, email, mobile, password);
         if (response.status === 201) {
             const loginResponse = await Login(email, password);
-            console.log("LoginResponse In RegisterPage: ",loginResponse)
-			if (loginResponse.status === 200) {
-				const { data } = loginResponse;
-				const { token } = data;
-				localStorage.setItem("token", token);
-				setShowLogInRedirect(true);
-			}
+            console.log("LoginResponse In RegisterPage: ", loginResponse)
+            if (loginResponse.status === 200) {
+                const { data } = loginResponse;
+                const { token } = data;
+                localStorage.setItem("token", token);
+                setShowLogInRedirect(true);
+            }
         }
     }
 
@@ -77,7 +78,9 @@ const RegisterPage = () => {
                     </button>
                     <div className='mx-2'>
                         <span className='tracking-tight text-[#525252]'>Already have an account?</span>
-                        <a href="" className='px-2 font-semibold underline underline-offset-2 hover:text-[#ED5353] duration-300'>Sign In</a>
+                        < button
+                            onClick={() => { navigate("/login") }}
+                            className='px-2 font-semibold underline underline-offset-2 hover:text-[#ED5353] duration-300'>Sign In</button>
                     </div>
                 </div>
             </div>

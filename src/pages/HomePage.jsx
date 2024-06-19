@@ -1,16 +1,26 @@
 import { useEffect, useState } from "react";
 import { fetchJobs, fetchJobsByQuery } from "../api/Job";
+import JobCard from "../components/JobCard";
 import Header from '../components/Header';
 import QueryWidget from '../components/QueryWidget'
 
 const HomePage = () => {
 
 	const [jobs, setJobs] = useState([]);
-	const altJobIcon = "https://static.thenounproject.com/png/2343509-200.png";
+	const [query, setQuery] = useState({
+		title: "",
+		skills: [],
+		minSalary: 0,
+		maxSalary: 100000000
+	});
 
 	useEffect(() => {
 		handleFetchJobs();
 	}, []);
+
+	useEffect(() => {
+		console.log(query);
+	}, [query]);
 
 	// const handleFetchJobs = async () => {
 	// 	const response = await fetchJobs();
@@ -20,10 +30,6 @@ const HomePage = () => {
 	// 	}
 	// };
 	const handleFetchJobs = async () => {
-		const query = {
-			minSalary: 0,
-			maxSalary: 100000000,
-		};
 		const response = await fetchJobsByQuery(query);
 
 		if (response.status == 200) {
@@ -36,17 +42,16 @@ const HomePage = () => {
 	}, [jobs]);
 
 	return (
-		<div className="h-screen bg-[#fce1e1]">
+		<div className="bg-[#fce1e1] h-full">
 			<Header />
-			<QueryWidget />
-			<div className="my-8">
-			{jobs.map((job, index) => (
-				<div key={index}>
-					<h3>{job.companyName}</h3>
-					<h4>{job.jobType}</h4>
-					<img src={job.logoUrl} alt={altJobIcon} />
-				</div>
-			))}
+			<QueryWidget
+				query={query}
+				setQuery={setQuery}
+				handleFetchJobs={handleFetchJobs} />
+			<div className="py-8">
+				{jobs.map((job, index) => (
+					<JobCard job={job} key={index} />
+				))}
 			</div>
 		</div>
 	);

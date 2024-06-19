@@ -14,15 +14,16 @@ const fetchJobs = async () => {
 const fetchJobsByQuery = async (query) => {
     const { minSalary,
         maxSalary,
-        jobType,
-        location,
-        remote,
-        skills } = query;
+        title,
+        skills
+    } = query;
     try {
         const response = await axios.get(`${BACKEND_ORIGIN_URL}/job`, {
             params: {
                 minSalary,
                 maxSalary,
+                title,
+                skills
             }
         });
         return response;
