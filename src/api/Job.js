@@ -32,5 +32,14 @@ const fetchJobsByQuery = async (query) => {
     }
 };
 
+const fetchJobById = async (id) => {
+    try {
+        const response = await axios.get(`${BACKEND_ORIGIN_URL}/job/${id}`);
+        return response;
+    } catch (error) {
+        return error;
+    }
+};
 
-export { fetchJobs, fetchJobsByQuery };
+
+export { fetchJobs, fetchJobsByQuery, fetchJobById };

@@ -4,7 +4,7 @@ import JobCard from "../components/JobCard";
 import Header from '../components/Header';
 import QueryWidget from '../components/QueryWidget'
 
-const HomePage = () => {
+const HomePage = ({ currentUser, setCurrentUser }) => {
 
 	const [jobs, setJobs] = useState([]);
 	const [query, setQuery] = useState({
@@ -18,9 +18,9 @@ const HomePage = () => {
 		handleFetchJobs();
 	}, []);
 
-	useEffect(() => {
-		console.log(query);
-	}, [query]);
+	// useEffect(() => {
+	// 	console.log(query);
+	// }, [query]);
 
 	// const handleFetchJobs = async () => {
 	// 	const response = await fetchJobs();
@@ -37,13 +37,13 @@ const HomePage = () => {
 		}
 	};
 
-	useEffect(() => {
-		console.log(jobs);
-	}, [jobs]);
+	// useEffect(() => {
+	// 	console.log(jobs);
+	// }, [jobs]);
 
 	return (
-		<div className="bg-[#fce1e1] h-full">
-			<Header />
+		<div className="bg-[#fce1e1] min-h-screen">
+			<Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
 			<QueryWidget
 				query={query}
 				setQuery={setQuery}

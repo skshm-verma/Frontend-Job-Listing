@@ -3,7 +3,7 @@ import { Register, Login } from '../api/User';
 import { Navigate, useNavigate } from 'react-router-dom';
 import image1 from '../assets/imageRegister.png'
 
-const RegisterPage = () => {
+const RegisterPage = ({ setCurrentUser }) => {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -17,6 +17,7 @@ const RegisterPage = () => {
             const loginResponse = await Login(email, password);
             console.log("LoginResponse In RegisterPage: ", loginResponse)
             if (loginResponse.status === 200) {
+                setCurrentUser(true);
                 const { data } = loginResponse;
                 const { token } = data;
                 localStorage.setItem("token", token);

@@ -6,24 +6,30 @@ import Rectangle2 from '../assets/Rectangle2.png';
 import Rectangle3 from '../assets/Rectangle3.png';
 import Rectangle4 from '../assets/Rectangle4.png';
 
-const Header = ({userDetails}) => {
-    const navigate = useNavigate();
+const Header = ({ currentUser, setCurrentUser }) => {
+	const navigate = useNavigate();
 	return (
 		<div>
 			<div className='relative'>
-				<img  src={Rectangle1} alt="HeaderPng" />
+				<img src={Rectangle1} alt="HeaderPng" />
 				<span className='absolute tracking-wider font-dm text-4xl text-white left-20 top-10'>Jobfinder</span>
 				<img className='absolute left-64 top-0' src={Rectangle3} alt="" />
 				<img className='absolute right-24 top-0 h-[95%]' src={Rectangle4} alt="" />
 			</div>
-			{userDetails && (
+			{currentUser && (
 				<div className='w-16 absolute top-6 right-60 flex items-center'>
-					<button className='tracking-tight text-white text-2xl'>Logout</button>
+					<button
+						onClick={() => {
+							setCurrentUser(false);
+							localStorage.removeItem("token");
+							navigate("/login");
+						}}
+						className='tracking-tight text-white text-2xl'>Logout</button>
 					<span className='tracking-tight text-white text-2xl mx-4'>Hello!</span>
-					<img className='' src={UserAvatar} alt="" />
+					<img className='' src={UserAvatar} alt="UserIcon" />
 				</div>
 			)}
-			{!userDetails && (
+			{!currentUser && (
 				<div className='absolute top-10 text-white text-xl right-20'>
 					<button
 						onClick={() => {
