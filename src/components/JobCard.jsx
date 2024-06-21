@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, currentUser }) => {
 	const navigate = useNavigate();
 	const {
 		title,
@@ -51,20 +51,39 @@ const JobCard = ({ job }) => {
 				<div className='flex w-[650px]  px-3 flex-col justify-center items-end'>
 					<div className='flex gap-2 flex-wrap ml-32'>
 						{skills.map((skill, index) => {
-							return <div 
-							className='bg-[#FFEEEE] px-3 py-1 rounded-md'
-							key={index}>{skill}</div>;
+							return <div
+								className='bg-[#FFEEEE] px-3 py-1 rounded-md'
+								key={index}>{skill}</div>;
 						})}
 					</div>
 					<div className='mt-3 mx-2'>
-					<button
-						className='px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg duration-300'
-						onClick={() => {
-							navigate(`/job/${_id}`);
-						}}
-					>
-						View Details
-					</button>
+						{currentUser ?
+							<div className='flex gap-2'>
+								<button
+									className='px-4 py-1 shadow-md rounded-md border border-[#ED5353] text-[#ED5353] hover:bg-[#FF6B6B] hover:text-white text-lg hover:duration-300'
+									onClick={() => {
+										navigate(`/create`);
+									}}
+								>
+									Edit Details
+								</button>
+								<button
+									className='px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg hover:duration-300'
+									onClick={() => {
+										navigate(`/job/${_id}`);
+									}}
+								>
+									View Details
+								</button>
+							</div>
+							: <button
+								className='px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg hover:duration-300'
+								onClick={() => {
+									navigate(`/job/${_id}`);
+								}}
+							>
+								View Details
+							</button>}
 					</div>
 				</div>
 			</div>

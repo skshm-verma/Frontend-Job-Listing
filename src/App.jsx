@@ -4,6 +4,7 @@ import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import HomePage from './pages/HomePage'
 import JobPage from './pages/JobPage'
+import CreateJobPage from './pages/CreateJobPage';
 import './App.css'
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
         <Route path='/register' element={<RegisterPage setCurrentUser={setCurrentUser}/>} />
         <Route path='/' element={<HomePage currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
         <Route path="/job/:id" element={<JobPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
+        <Route path="/create" element={<CreateJobPage currentUser={currentUser} />}
+				/>
       </Routes>
     </BrowserRouter>
   )

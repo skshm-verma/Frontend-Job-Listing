@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { fetchJobById } from '../api/Job';
 import MoneyBill from '../assets/moneyBill.png'
@@ -7,6 +8,7 @@ import Duration from '../assets/duration.png'
 
 
 const JobPage = ({ currentUser, setCurrentUser }) => {
+  const navigate = useNavigate();
   const [job, setJob] = useState();
   const jobID = window.location.pathname.split("/").pop();
 
@@ -77,7 +79,6 @@ const JobPage = ({ currentUser, setCurrentUser }) => {
             <div>
               <div className='flex items-center'>
                 <p className='text-sm text-[#999999] mx-1'>{timeElapsed(job.createdAt)}</p>
-                {/* <span className='text-5xl flex bg-blue-300 justify-center '>.</span> */}
                 <p className='mx-2 text-[#999999] text-xl'>{job.jobType}</p>
                 {currentUser && <img className='w-20 h-20 shadow-lg rounded-full ml-8' src={job.logoUrl} alt="job logo" />}
                 {currentUser && <p className='mx-4 text-xl text-[#999999]'>{job.companyName}</p>}
@@ -92,6 +93,9 @@ const JobPage = ({ currentUser, setCurrentUser }) => {
                   <div className='flex justify-end items-center w-[40%]'>
                     <button
                       className='mx-6 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg hover:duration-300'
+                      onClick={() => {
+                        navigate("/create");
+                      }}
                     >Edit Job</button>
                   </div>}
               </div>

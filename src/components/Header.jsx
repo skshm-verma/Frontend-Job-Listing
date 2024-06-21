@@ -2,7 +2,6 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import UserAvatar from '../assets/Avatar.png';
 import Rectangle1 from '../assets/Rectangle1.png';
-import Rectangle2 from '../assets/Rectangle2.png';
 import Rectangle3 from '../assets/Rectangle3.png';
 import Rectangle4 from '../assets/Rectangle4.png';
 

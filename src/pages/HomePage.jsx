@@ -50,7 +50,7 @@ const HomePage = ({ currentUser, setCurrentUser }) => {
 				handleFetchJobs={handleFetchJobs} />
 			<div className="py-8">
 				{jobs.map((job, index) => (
-					<JobCard job={job} key={index} />
+					<JobCard currentUser={currentUser} job={job} key={index} />
 				))}
 			</div>
 		</div>
