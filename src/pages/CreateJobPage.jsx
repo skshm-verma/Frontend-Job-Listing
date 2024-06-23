@@ -1,4 +1,5 @@
 import React from 'react';
+import { createJob } from '../api/Job';
 import { useEffect, useState } from "react";
 import CreateJobWallpaper from '../assets/jobWallpaper.png';
 import ChipsSelection from '../components/ChipsSelection';
@@ -16,7 +17,7 @@ const CreateJobPage = ({ currentUser }) => {
     jobType: "",
     salary: "",
     location: "",
-    duration: "",
+    duration: "Permanent",
     locationType: "",
     information: "",
     skills: [],
@@ -35,9 +36,28 @@ const CreateJobPage = ({ currentUser }) => {
     }
   };
 
-  useEffect(() => {
-    console.log(job);
-  }, [job]);
+  const handleJobCreate = async () => {
+		const response = await createJob(job);
+		if (response.status === 201) {
+      alert("Job added successfully");
+			setJob({
+        companyName: "",
+        title: "",
+        description: "",
+        logoUrl: "",
+        jobType: "",
+        salary: "",
+        location: "",
+        duration: "Permanent",
+        locationType: "",
+        information: "",
+        skills: [],
+        additionalInformation: ""
+			});
+		} else {
+			alert("Error adding job");
+		}
+	};
 
   return (
     <div className='flex items-center'>
@@ -170,7 +190,9 @@ const CreateJobPage = ({ currentUser }) => {
 
           <div className='flex justify-end mt-3 px-12'>
             <button className='mr-3 px-7 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md'>Cancel</button>
-            <button className='mr-4 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300'>+Add Job</button>
+            <button 
+            onClick={handleJobCreate}
+            className='mr-4 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300'>+Add Job</button>
           </div>
 
         </form>

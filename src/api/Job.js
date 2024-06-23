@@ -41,5 +41,22 @@ const fetchJobById = async (id) => {
     }
 };
 
+const createJob = async (job) => {
+    try {
+        const token = localStorage.getItem('token');
+        const config = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        };
+        const response = await axios.post(`${BACKEND_ORIGIN_URL}/job/add`, job, config);
+        console.log("From Frontend Response of new job: ",response);
+        return response;
+    } catch (error) {
+        return error;
+    }
+};
 
-export { fetchJobs, fetchJobsByQuery, fetchJobById };
+
+
+export { fetchJobs, fetchJobsByQuery, fetchJobById, createJob };

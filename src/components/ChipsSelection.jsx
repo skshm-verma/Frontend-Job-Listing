@@ -1,10 +1,11 @@
 import React from 'react';
+import DefinedSkills from '../data/skills';
 import { useEffect, useState } from 'react';
 
 const ChipsSelection = ({ selectedSkills, setSelectedSkills }) => {
 	const [currentSkill, setCurrentSkill] = useState("");
-	const defaultSkills = ["Frontend", "Backend", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "REST APIs"];
-
+	const defaultSkills = DefinedSkills;
+    //  ["Frontend", "Backend", "CSS", "JavaScript", "React", "Node.js", "Express", "MongoDB", "REST APIs"];
 	const handleAddSkill = (skill) => {
 		// e.preventDefault();
 		setCurrentSkill(skill);
