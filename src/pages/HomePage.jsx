@@ -17,11 +17,8 @@ const HomePage = ({ currentUser, setCurrentUser }) => {
 	useEffect(() => {
 		handleFetchJobs();
 	}, []);
-
-	// useEffect(() => {
-	// 	console.log(query);
-	// }, [query]);
-
+    
+	//If you want to use fetchJobs() function in Job.js
 	// const handleFetchJobs = async () => {
 	// 	const response = await fetchJobs();
 	// 	console.log("Home Page Response: ", response)
@@ -29,17 +26,13 @@ const HomePage = ({ currentUser, setCurrentUser }) => {
 	// 		setJobs(response.data.jobs);
 	// 	}
 	// };
+
 	const handleFetchJobs = async () => {
 		const response = await fetchJobsByQuery(query);
-
 		if (response.status == 200) {
 			setJobs(response.data.jobs);
 		}
 	};
-
-	// useEffect(() => {
-	// 	console.log(jobs);
-	// }, [jobs]);
 
 	return (
 		<div className="bg-[#fce1e1] min-h-screen">

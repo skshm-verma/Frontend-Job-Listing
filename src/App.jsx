@@ -9,15 +9,15 @@ import './App.css'
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
+  const [back, setBack] = useState(false);
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/login' element={<LoginPage setCurrentUser={setCurrentUser}/>} />
-        <Route path='/register' element={<RegisterPage setCurrentUser={setCurrentUser}/>} />
-        <Route path='/' element={<HomePage currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
-        <Route path="/job/:id" element={<JobPage currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
-        <Route path="/create" element={<CreateJobPage currentUser={currentUser} />}
-				/>
+        <Route path='/login' element={<LoginPage setCurrentUser={setCurrentUser} />} />
+        <Route path='/register' element={<RegisterPage setCurrentUser={setCurrentUser} />} />
+        <Route path='/' element={<HomePage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
+        <Route path="/job/:id" element={<JobPage currentUser={currentUser} setCurrentUser={setCurrentUser} back={back} setBack={setBack} />} />
+        <Route path="/create" element={<CreateJobPage currentUser={currentUser} />} />
       </Routes>
     </BrowserRouter>
   )

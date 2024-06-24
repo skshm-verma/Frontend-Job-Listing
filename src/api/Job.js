@@ -50,7 +50,6 @@ const createJob = async (job) => {
             }
         };
         const response = await axios.post(`${BACKEND_ORIGIN_URL}/job/add`, job, config);
-        console.log("From Frontend Response of new job: ",response);
         return response;
     } catch (error) {
         return error;

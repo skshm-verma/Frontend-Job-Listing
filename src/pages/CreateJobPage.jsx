@@ -1,11 +1,14 @@
 import React from 'react';
 import { createJob } from '../api/Job';
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { Toaster, toast } from 'react-hot-toast';
 import CreateJobWallpaper from '../assets/jobWallpaper.png';
 import ChipsSelection from '../components/ChipsSelection';
 
 const CreateJobPage = ({ currentUser }) => {
-
+  
+  const navigate = useNavigate();
   const validJobTypes = ["Full-Time", "Part-Time", "Internship"];
   const validLocationTypes = ["On-Site", "Remote", "Hybrid"];
 
@@ -36,10 +39,12 @@ const CreateJobPage = ({ currentUser }) => {
     }
   };
 
-  const handleJobCreate = async () => {
+  const handleJobCreate = async (event) => {
+    event.preventDefault();
 		const response = await createJob(job);
+    console.log("handleJobCreate: " ,response)
 		if (response.status === 201) {
-      alert("Job added successfully");
+      toast.success('Job added successfully');
 			setJob({
         companyName: "",
         title: "",
@@ -55,16 +60,17 @@ const CreateJobPage = ({ currentUser }) => {
         additionalInformation: ""
 			});
 		} else {
-			alert("Error adding job");
+			toast.error('Error adding job');
 		}
 	};
-
+  
   return (
     <div className='flex items-center'>
+      <Toaster position="top-center" reverseOrder={false} />
       <div className='w-[60%] px-16 flex flex-col justify-start'>
         <h3 className='text-3xl text-black font-semibold tracking-wide mb-6'>Add job description</h3>
 
-        <form>
+        <form onSubmit={handleJobCreate}>
           <div className='my-2 flex justify-start items-center'>
             <label className='px-3 py-1 mr-4 text-base font-semibold tracking-wide font-dm w-1/4'>Company Name</label>
             <input
@@ -191,7 +197,7 @@ const CreateJobPage = ({ currentUser }) => {
           <div className='flex justify-end mt-3 px-12'>
             <button className='mr-3 px-7 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md'>Cancel</button>
             <button 
-            onClick={handleJobCreate}
+            type='submit'
             className='mr-4 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300'>+Add Job</button>
           </div>
 

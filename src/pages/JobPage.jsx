@@ -7,13 +7,14 @@ import MoneyBill from '../assets/moneyBill.png'
 import Duration from '../assets/duration.png'
 
 
-const JobPage = ({ currentUser, setCurrentUser }) => {
+const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
   const navigate = useNavigate();
   const [job, setJob] = useState();
   const jobID = window.location.pathname.split("/").pop();
 
   useEffect(() => {
     fetchJob();
+    setBack(true);
   }, []);
 
   useEffect(() => {
@@ -62,7 +63,7 @@ const JobPage = ({ currentUser, setCurrentUser }) => {
 
   return (
     <div>
-      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} />
+      <Header currentUser={currentUser} setCurrentUser={setCurrentUser} back={back} />
 
       {job && (
         <div className='flex flex-col justify-center items-center mb-16'>
@@ -120,13 +121,12 @@ const JobPage = ({ currentUser, setCurrentUser }) => {
 
             <div className='my-4'>
               <h1 className='text-2xl font-semibold text-black py-2 tracking-wide'>About Company</h1>
-              <p className='text-lg tracking-tight text-[#595959]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur ab vitae in aut eaque voluptas rem ut laudantium. Porro magnam cupiditate voluptas alias assumenda modi molestias laborum ullam sapiente error! Tempora non culpa molestiae beatae aperiam ipsum laboriosam ea? Quam, explicabo facere? Veniam, quisquam esse eum aspernatur ea aliquid modi.</p>
+              <p className='text-lg tracking-tight text-[#595959] w-[80%]'>{job.information}</p>
             </div>
 
             <div className='my-4'>
               <h1 className='text-2xl font-semibold text-black py-2 tracking-wide'>About the job/internship</h1>
-              <p className='text-lg tracking-tight text-[#595959] mb-2 w-[60%]'>{job.description}</p>
-              <p className='text-lg tracking-tight text-[#595959] w-[50%]'>{job.information}</p>
+              <p className='text-lg tracking-tight text-[#595959] mb-2 w-[80%]'>{job.description}</p>
             </div>
             <div className='my-4'>
               <h1 className='text-2xl font-semibold text-black py-2 tracking-wide flex'>Skill<span className=' flex justify-center items-center mr-2'>(s)</span>Required</h1>
