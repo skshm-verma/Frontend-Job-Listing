@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage'
 import JobPage from './pages/JobPage'
 import CreateJobPage from './pages/CreateJobPage';
 import './App.css'
+import EditJobPage from './pages/EditJobPage';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
@@ -17,7 +18,8 @@ function App() {
         <Route path='/register' element={<RegisterPage setCurrentUser={setCurrentUser} />} />
         <Route path='/' element={<HomePage currentUser={currentUser} setCurrentUser={setCurrentUser} />} />
         <Route path="/job/:id" element={<JobPage currentUser={currentUser} setCurrentUser={setCurrentUser} back={back} setBack={setBack} />} />
-        <Route path="/create" element={<CreateJobPage currentUser={currentUser} />} />
+        <Route path="/create" element={<CreateJobPage />} />
+        <Route path="/edit/:id" element={<EditJobPage />} />
       </Routes>
     </BrowserRouter>
   )

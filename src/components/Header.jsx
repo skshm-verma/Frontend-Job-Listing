@@ -1,5 +1,6 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
 import UserAvatar from '../assets/Avatar.png';
 import Rectangle1 from '../assets/Rectangle1.png';
 import Rectangle3 from '../assets/Rectangle3.png';
@@ -17,26 +18,29 @@ const Header = ({ currentUser, setCurrentUser, back }) => {
 				<img className='absolute right-24 top-0 h-[95%]' src={Rectangle4} alt="" />
 			</div>
 			{currentUser && (
-				<div className={`w-16 absolute top-6 ${ back? `right-[19rem]` :`right-60`} flex items-center`}>
-					{ back && <img
-					onClick={()=>{navigate("/")}}  
-					className='pr-4 pt-1 w-16 h-12 cursor-pointer' src="https://img.icons8.com/ios/50/FFFFFF/left--v1.png" alt="leftArrow"/> }
+				<div className={`absolute top-6 right-16 flex items-center`}>
+					{back && <img
+						onClick={() => { navigate("/") }}
+						className='pr-4 pt-1 w-16 h-12 cursor-pointer' src="https://img.icons8.com/ios/50/FFFFFF/left--v1.png" alt="leftArrow" />}
+					<button
+					onClick={() => { navigate("/create")}} 
+					className='tracking-tight text-white text-2xl'>Add Job</button>
 					<button
 						onClick={() => {
 							setCurrentUser(false);
 							localStorage.removeItem("token");
-							navigate("/login");
+							navigate("/");
 						}}
-						className='tracking-tight text-white text-2xl'>Logout</button>
-					<span className='tracking-tight text-white text-2xl mx-4'>Hello!</span>
-					<img className='' src={UserAvatar} alt="UserIcon" />
+						className='mx-4 tracking-tight text-white text-2xl'>Logout</button>
+					<span className='tracking-tight text-white text-2xl mx-4'>Hello! Recruiter</span>
+					<img className='w-16' src={UserAvatar} alt="UserIcon" />
 				</div>
 			)}
 			{!currentUser && (
-				<div className={`absolute top-10 text-white text-xl flex items-center ${ back? `right-20` : `right-20`}`}>
-					{ back && <img
-					onClick={()=>{navigate("/")}} 
-					className='pr-4 w-16 h-12 cursor-pointer' src="https://img.icons8.com/ios/50/FFFFFF/left--v1.png" alt="leftArrow"/> }
+				<div className={`absolute top-10 text-white text-xl flex items-center ${back ? `right-20` : `right-20`}`}>
+					{back && <img
+						onClick={() => { navigate("/") }}
+						className='pr-4 w-16 h-12 cursor-pointer' src="https://img.icons8.com/ios/50/FFFFFF/left--v1.png" alt="leftArrow" />}
 					<button
 						onClick={() => {
 							navigate("/login");

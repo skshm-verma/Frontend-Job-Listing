@@ -6,8 +6,8 @@ import { Toaster, toast } from 'react-hot-toast';
 import CreateJobWallpaper from '../assets/jobWallpaper.png';
 import ChipsSelection from '../components/ChipsSelection';
 
-const CreateJobPage = ({ currentUser }) => {
-  
+const CreateJobPage = () => {
+
   const navigate = useNavigate();
   const validJobTypes = ["Full-Time", "Part-Time", "Internship"];
   const validLocationTypes = ["On-Site", "Remote", "Hybrid"];
@@ -41,11 +41,11 @@ const CreateJobPage = ({ currentUser }) => {
 
   const handleJobCreate = async (event) => {
     event.preventDefault();
-		const response = await createJob(job);
-    console.log("handleJobCreate: " ,response)
-		if (response.status === 201) {
+    const response = await createJob(job);
+    console.log("handleJobCreate: ", response)
+    if (response.status === 201) {
       toast.success('Job added successfully');
-			setJob({
+      setJob({
         companyName: "",
         title: "",
         description: "",
@@ -58,12 +58,12 @@ const CreateJobPage = ({ currentUser }) => {
         information: "",
         skills: [],
         additionalInformation: ""
-			});
-		} else {
-			toast.error('Error adding job');
-		}
-	};
-  
+      });
+    } else {
+      toast.error('Error adding job');
+    }
+  };
+
   return (
     <div className='flex items-center'>
       <Toaster position="top-center" reverseOrder={false} />
@@ -148,7 +148,7 @@ const CreateJobPage = ({ currentUser }) => {
           </div>
 
           <div className='my-2 flex justify-start items-center'>
-          <label className='px-3 py-1 mr-4 text-base font-semibold tracking-wide font-dm w-1/4'>Location</label>
+            <label className='px-3 py-1 mr-4 text-base font-semibold tracking-wide font-dm w-1/4'>Location</label>
             <input
               type="text"
               value={job.location}
@@ -181,7 +181,7 @@ const CreateJobPage = ({ currentUser }) => {
             />
           </div>
 
-          <ChipsSelection selectedSkills={job.skills} setSelectedSkills={(skills) => setJob({ ...job, skills })}/>
+          <ChipsSelection selectedSkills={job.skills} setSelectedSkills={(skills) => setJob({ ...job, skills })} />
 
           <div className='mt-6 mb-2 flex justify-start items-center'>
             <label className='px-3 py-1 mr-4 text-base font-semibold tracking-wide font-dm w-1/4'>Information</label>
@@ -195,10 +195,12 @@ const CreateJobPage = ({ currentUser }) => {
           </div>
 
           <div className='flex justify-end mt-3 px-12'>
-            <button className='mr-3 px-7 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md'>Cancel</button>
-            <button 
-            type='submit'
-            className='mr-4 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300'>+Add Job</button>
+            <button
+              onClick={() => { navigate('/') }}
+              className='mr-3 px-7 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md'>Cancel</button>
+            <button
+              type='submit'
+              className='mr-4 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300'>+Add Job</button>
           </div>
 
         </form>

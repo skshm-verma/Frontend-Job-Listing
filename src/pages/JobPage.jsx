@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
-import { fetchJobById } from '../api/Job';
+import { fetchJobById, deleteJob } from '../api/Job';
 import MoneyBill from '../assets/moneyBill.png'
 import Duration from '../assets/duration.png'
 
@@ -11,6 +11,7 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
   const navigate = useNavigate();
   const [job, setJob] = useState();
   const jobID = window.location.pathname.split("/").pop();
+  const UserId = localStorage.getItem('user');
 
   useEffect(() => {
     fetchJob();
@@ -53,13 +54,28 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
       const response = await fetchJobById(jobID);
       if (response.status == 200) {
         setJob(response.data.job);
-        console.log(response.data.job);
       }
     } catch (error) {
       console.log(error);
       return response.status;
     }
   };
+
+  const handleDeleteJob = async () => {
+    try{
+      
+      if(UserId == job.refUserId){
+        const response = await deleteJob(job._id);
+        console.log(response);
+        if(response.status == 200){
+          navigate('/');
+        }
+      }
+    }catch(error){
+      console.log(error);
+      return response.status;
+    }
+  }
 
   return (
     <div>
@@ -77,7 +93,7 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
           </div>
           <div className='flex flex-col bg-white shadow-lg rounded-sm w-[80%] h-fit px-24 py-16'>
 
-            <div>
+            <div className='relative'>
               <div className='flex items-center'>
                 <p className='text-sm text-[#999999] mx-1'>{timeElapsed(job.createdAt)}</p>
                 <p className='mx-2 text-[#999999] text-xl'>{job.jobType}</p>
@@ -91,13 +107,17 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
                   <p className='text-2xl text-[#ED5353] mt-4 px-1'>{job.location}</p>
                 </div>
                 {currentUser &&
-                  <div className='flex justify-end items-center w-[40%]'>
+                  <div className='flex flex-col gap-2 justify-end items-center absolute right-4 bottom-12'>
                     <button
-                      className='mx-6 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg hover:duration-300'
+                      className='mx-6 px-7 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg hover:duration-300'
                       onClick={() => {
-                        navigate("/create");
+                        navigate(`/edit/${jobID}`);
                       }}
                     >Edit Job</button>
+                    <button
+                      className='mx-6 px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-lg hover:duration-300'
+                      onClick={handleDeleteJob}
+                    >Delete Job</button>
                   </div>}
               </div>
 

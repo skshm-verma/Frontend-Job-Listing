@@ -14,17 +14,13 @@ const LoginPage = ({ setCurrentUser }) => {
 
     const handleLogin = async () => {
         const response = await Login(email, password);
-        console.log("Response In Auth: ", response);
         if (response.status == 200) {
             setCurrentUser(true);
             localStorage.setItem("token", response.data.token);
+            localStorage.setItem('user',response.data.id);
             setRedirectToHome(true);
         }
     }
-
-    useEffect(() => {
-        console.log(redirectToHome);
-    }, [redirectToHome]);
 
     return (
         <div className='flex'>

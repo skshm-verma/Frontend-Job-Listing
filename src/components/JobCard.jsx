@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 
 const JobCard = ({ job, currentUser }) => {
@@ -16,7 +16,7 @@ const JobCard = ({ job, currentUser }) => {
 	} = job;
 	const altJobIcon = "https://static.thenounproject.com/png/2343509-200.png";
 
-	console.log("Job in Job Card: ", job);
+
 	return (
 		<div className='flex justify-center my-4'>
 			<div className='relative w-[80%] h-40 flex bg-white rounded-lg shadow-md shadow-[#f6c6c6]'>
@@ -62,7 +62,7 @@ const JobCard = ({ job, currentUser }) => {
 								<button
 									className='px-4 py-1 shadow-md rounded-md border border-[#ED5353] text-[#ED5353] hover:bg-[#FF6B6B] hover:text-white text-lg hover:duration-300'
 									onClick={() => {
-										navigate(`/create`);
+										navigate(`/edit/${_id}`);
 									}}
 								>
 									Edit Details
