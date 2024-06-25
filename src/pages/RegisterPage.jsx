@@ -9,9 +9,29 @@ const RegisterPage = ({ setCurrentUser }) => {
     const [email, setEmail] = useState('');
     const [mobile, setMobile] = useState('');
     const [password, setPassword] = useState('');
+    const [checkbox, setCheckbox] = useState(false);
+    const [errors, setErrors] = useState({});
     const [showLogInRedirect, setShowLogInRedirect] = useState(false);
 
+    const validate = () => {
+        const errors = {};
+
+        if (!name) errors.name = "Name is required";
+        if (!email) errors.email = "Email is required";
+        if (!mobile) errors.mobile = "Mobile number is required";
+        if (!password) errors.password = "Password is required";
+        if (!checkbox) errors.checkbox = "You must agree to the terms";
+
+        return errors;
+    };
+
     const handleRegister = async () => {
+        const errors = validate();
+        if (Object.keys(errors).length > 0) {
+            setErrors(errors);
+            return;
+        }
+
         const response = await Register(name, email, mobile, password);
         if (response.status === 201) {
             const loginResponse = await Login(email, password);
@@ -40,6 +60,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             onInput={(e) => setName(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                         />
+                        {errors.name && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.name}</div>}
                     </div>
                     <div className='inline-block border-[#C2C2C2] pb-2'>
                         <input
@@ -49,6 +70,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             onInput={(e) => setEmail(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                         />
+                        {errors.email && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.email}</div>}
                     </div>
                     <div className='inline-block border-[#C2C2C2] pb-2'>
                         <input
@@ -58,19 +80,26 @@ const RegisterPage = ({ setCurrentUser }) => {
                             onInput={(e) => setMobile(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                         />
+                        {errors.mobile && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.mobile}</div>}
                     </div>
-                    <div className='inline-block border-[#C2C2C2] pb-2'>
-                        <input
-                            type="password"
-                            placeholder='Password'
-                            value={password}
-                            onInput={(e) => setPassword(e.target.value)}
-                            className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
-                        />
+                    <div className='inline-block border-[#C2C2C2] pb-1'>
+                        <form>
+                            <input
+                                type="password"
+                                placeholder='Password'
+                                value={password}
+                                onInput={(e) => setPassword(e.target.value)}
+                                className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            />
+                            {errors.password && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.password}</div>}
+                        </form>
                     </div>
-                    <div className='mx-2 flex justify-center items-center pb-2'>
-                        <input type="checkbox" name='terms&conditions' />
+                    <div className='mx-2 pb-2'>
+                        <div className='flex justify-center items-center'>
+                        <input type="checkbox" name='terms&conditions' value={checkbox} onClick={() => setCheckbox(true)}/>
                         <label htmlFor="terms&conditions" className='tracking-tight px-2 text-sm text-[#525252]'>By creating an account, I agree to our terms of use and privacy policy</label>
+                        </div>
+                        {errors.checkbox && <div className='text-sm my-1 text-[#ED5353]'>{errors.checkbox}</div>}
                     </div>
                     <button
                         onClick={handleRegister}

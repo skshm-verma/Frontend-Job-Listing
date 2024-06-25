@@ -10,8 +10,8 @@ const HomePage = ({ currentUser, setCurrentUser }) => {
 	const [query, setQuery] = useState({
 		title: "",
 		skills: [],
-		minSalary: 0,
-		maxSalary: 100000000
+		minSalary: '',
+		maxSalary: ''
 	});
 
 	useEffect(() => {

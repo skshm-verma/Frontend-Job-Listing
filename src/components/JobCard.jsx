@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
+import Flag from '../assets/IndiaFlag.png'
 
 const JobCard = ({ job, currentUser }) => {
 	const navigate = useNavigate();
@@ -19,8 +20,8 @@ const JobCard = ({ job, currentUser }) => {
 
 	return (
 		<div className='flex justify-center my-4'>
-			<div className='relative w-[80%] h-40 flex bg-white rounded-lg shadow-md shadow-[#f6c6c6]'>
-				<div className='absolute bg-[#FF0000] rounded-s-lg w-2 h-full left-0'></div>
+			<div className='relative w-[80%] h-40 flex bg-white rounded-lg shadow-md shadow-[#f6c6c6] group'>
+				<div className='absolute bg-[#FF0000] rounded-s-lg w-2 h-full left-0 group-hover:visible invisible transition-all duration-75'></div>
 				<div className='pt-6 px-6'>
 					<img className='h-16 w-16 rounded-md shadow-lg' src={logoUrl} alt={altJobIcon} />
 				</div>
@@ -28,22 +29,22 @@ const JobCard = ({ job, currentUser }) => {
 					<div className='pb-3'>
 						{title}
 					</div>
-					<div className='pb-3'>
+					<div className='pb-3 flex'>
 						<span className='pr-4'>
 							{duration}
 						</span>
 						<span className='pr-4'>
 							{salary}
 						</span>
-						<span className='pr-4'>
-							{location}
+						<span className='pr-4 flex justify-center items-center'>
+							<img className='w-6 h-6 mx-2' src={Flag} alt="IndianFlag" />{location}
 						</span>
 					</div>
 					<div className='pb-3'>
-						<span className='pr-4'>
+						<span className='pr-4 text-[#ED5353]'>
 							{locationType}
 						</span>
-						<span className='pr-4'>
+						<span className='pr-4 text-[#ED5353]'>
 							{jobType}
 						</span>
 					</div>

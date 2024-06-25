@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import { fetchJobById, deleteJob } from '../api/Job';
+import { Toaster, toast } from 'react-hot-toast';
 import MoneyBill from '../assets/moneyBill.png'
 import Duration from '../assets/duration.png'
 
@@ -71,6 +72,7 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
           navigate('/');
         }
       }
+      toast.error('You are not authorized');
     }catch(error){
       console.log(error);
       return response.status;
@@ -80,7 +82,7 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
   return (
     <div>
       <Header currentUser={currentUser} setCurrentUser={setCurrentUser} back={back} />
-
+      <Toaster position="top-center" reverseOrder={false} />
       {job && (
         <div className='flex flex-col justify-center items-center mb-16'>
           <div className='w-[80%] h-40 bg-white flex justify-center items-center rounded-sm -translate-y-8 shadow-lg'>
@@ -97,8 +99,8 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
               <div className='flex items-center'>
                 <p className='text-sm text-[#999999] mx-1'>{timeElapsed(job.createdAt)}</p>
                 <p className='mx-2 text-[#999999] text-xl'>{job.jobType}</p>
-                {currentUser && <img className='w-20 h-20 shadow-lg rounded-full ml-8' src={job.logoUrl} alt="job logo" />}
-                {currentUser && <p className='mx-4 text-xl text-[#999999]'>{job.companyName}</p>}
+                <img className='w-20 h-20 shadow-lg rounded-full ml-8' src={job.logoUrl} alt="job logo" />
+                <p className='mx-4 text-xl text-[#999999]'>{job.companyName}</p>
               </div>
 
               <div className='my-4 flex'>

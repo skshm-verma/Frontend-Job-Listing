@@ -14,6 +14,18 @@ const QueryWidget = ({ query, setQuery, handleFetchJobs }) => {
 	const handleClearFilters = () => {
 		setQuery({ title: "", skills: [] });
 	};
+
+	const handleQuerySkill = (index) => {
+		setQuery(prevQuery => {
+			const newSkills = [...prevQuery.skills];
+			newSkills.splice(index, 1);
+			return {
+				...prevQuery,
+				skills: newSkills
+			};
+		});
+	};
+
 	return (
 		<div className='flex justify-center items-center relative'>
 			<div className='w-[80%] h-fit py-12 px-5 shadow-xl shadow-[#f6c6c6] bg-white my-4 rounded-md'>
@@ -38,13 +50,16 @@ const QueryWidget = ({ query, setQuery, handleFetchJobs }) => {
 						))}
 					</select>
 				</div>
-				<div className='inline-block ml-72 mt-1 h-fit w-[50%] py-4'>
-					{query.skills && query.skills.map((skill) => {
+				<div className='inline-block ml-[19rem] mt-1 h-fit w-[65%] py-4'>
+					{query.skills && query.skills.map((skill, index) => {
 						return <div
+							key={index}
 							className='relative inline-block mx-2 mb-2 pr-7 pl-3 py-1 rounded-md border-2 border-[#ED5353] text-sm font-semibold bg-[#FFEEEE]'>
 							{skill}
 							<span className='px-1'></span>
-							<span className='bg-[#ED5353] absolute top-0 right-0 px-2 h-full text-lg text-white font-normal flex items-center'>X</span>
+							<span
+							onClick={() => {handleQuerySkill(index)}} 
+							className='bg-[#ED5353] absolute top-0 right-0 px-2 h-full text-lg text-white font-normal flex items-center cursor-pointer'>X</span>
 						</div>
 					})}
 				</div>
