@@ -1,9 +1,8 @@
-import React from 'react'
-import { useState } from 'react'
-import { Login } from '../api/User'
+import React, { useState } from 'react';
+import { Login } from '../api/User';
 import { Navigate, useNavigate } from "react-router-dom";
 import { Toaster, toast } from 'react-hot-toast';
-import image1 from '../assets/imageRegister.png'
+import image1 from '../assets/imageRegister.png';
 
 const LoginPage = ({ setCurrentUser }) => {
 
@@ -20,21 +19,31 @@ const LoginPage = ({ setCurrentUser }) => {
         return errors;
     };
 
-    const handleLogin = async () => {
+    const handleLogin = () => {
         const errors = validate();
         if (Object.keys(errors).length > 0) {
             setErrors(errors);
             return;
         }
+        fetchUser();
+    }
 
+    const fetchUser = async () => {
         const response = await Login(email, password);
-        if (response.status == 200) {
+        if (response.status === 200) {
             setCurrentUser(true);
             localStorage.setItem("token", response.data.token);
             localStorage.setItem('user', response.data.id);
             setRedirectToHome(true);
-        }else{
+        } else {
             toast.error('User not found');
+        }
+    }
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            handleLogin();
         }
     }
 
@@ -52,20 +61,22 @@ const LoginPage = ({ setCurrentUser }) => {
                             value={email}
                             onInput={(e) => setEmail(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            onKeyDown={handleKeyDown}
                         />
                         {errors.email && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.email}</div>}
                     </div>
                     <div className='inline-block border-[#C2C2C2] pb-2'>
-                        <form>
+                        <form onKeyDown={handleKeyDown}>
                             <input
                                 type="password"
                                 placeholder='Password'
                                 value={password}
                                 onInput={(e) => setPassword(e.target.value)}
                                 className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                                
                             />
-                            {errors.password && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.password}</div>}
                         </form>
+                        {errors.password && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.password}</div>}
                     </div>
                     <button
                         onClick={handleLogin}
@@ -85,7 +96,7 @@ const LoginPage = ({ setCurrentUser }) => {
             </div>
             {redirectToHome && <Navigate to="/" />}
         </div>
-    )
+    );
 }
 
-export default LoginPage
+export default LoginPage;

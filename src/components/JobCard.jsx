@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
-import Flag from '../assets/IndiaFlag.png'
+import Flag from '../assets/IndiaFlag.png';
+import Rupee from '../assets/rupeeIcon.png';
+import Group from '../assets/groupIcon.png';
 
 const JobCard = ({ job, currentUser }) => {
 	const navigate = useNavigate();
@@ -26,18 +28,19 @@ const JobCard = ({ job, currentUser }) => {
 					<img className='h-16 w-16 rounded-md shadow-lg' src={logoUrl} alt={altJobIcon} />
 				</div>
 				<div className='flex w-[400px] flex-col justify-center items-start pb-4'>
-					<div className='pb-3'>
+					<div className='pb-3 text-[#9C9C9C]'>
 						{title}
 					</div>
-					<div className='pb-3 flex'>
-						<span className='pr-4'>
-							{duration}
+					<div className='pb-3 flex gap-3 items-center justify-center text-[#9C9C9C]'>
+						<span className='flex items-center justify-center gap-1'>
+						<img className='w-4 h-3' src={Group} alt="GroupIcon" />{duration}
 						</span>
-						<span className='pr-4'>
+						<span className='flex items-center justify-center gap-1'>
+							<img className='w-3 h-3' src={Rupee} alt="IndianRupeeIcon" />
 							{salary}
 						</span>
-						<span className='pr-4 flex justify-center items-center'>
-							<img className='w-6 h-6 mx-2' src={Flag} alt="IndianFlag" />{location}
+						<span className='flex justify-center items-center gap-1'>
+							<img className='w-5 h-5' src={Flag} alt="IndianFlag" />{location}
 						</span>
 					</div>
 					<div className='pb-3'>

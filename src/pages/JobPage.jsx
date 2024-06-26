@@ -11,6 +11,7 @@ import Duration from '../assets/duration.png'
 const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
   const navigate = useNavigate();
   const [job, setJob] = useState();
+  const [showModal, setShowModal] = useState(false);
   const jobID = window.location.pathname.split("/").pop();
   const UserId = localStorage.getItem('user');
 
@@ -63,19 +64,26 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
   };
 
   const handleDeleteJob = async () => {
-    try{
-      
-      if(UserId == job.refUserId){
+    setShowModal(true);
+  };
+
+  const confirmDeleteJob = async () => {
+    try {
+      if (UserId == job.refUserId) {
         const response = await deleteJob(job._id);
         console.log(response);
-        if(response.status == 200){
+        if (response.status == 200) {
           navigate('/');
         }
       }
       toast.error('You are not authorized');
-    }catch(error){
+      setShowModal(false);
+    } catch (error) {
       console.log(error);
       return response.status;
+    }
+    finally {
+      setShowModal(false);
     }
   }
 
@@ -86,12 +94,7 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
       {job && (
         <div className='flex flex-col justify-center items-center mb-16'>
           <div className='w-[80%] h-40 bg-white flex justify-center items-center rounded-sm -translate-y-8 shadow-lg'>
-            <h1 className='tracking-wide text-4xl'>
-              <span className='mx-1'>{job.title}</span>
-              <span className=''>{job.locationType}/</span>
-              <span className=''>{job.jobType}</span>
-              <span className='mx-1'>At {job.companyName}</span>
-            </h1>
+              <h1 className='w-[95%] px-4 tracking-wide text-4xl text-center'>{job.title}&nbsp;{job.locationType}&nbsp;{job.jobType}&nbsp;At&nbsp;{job.companyName}</h1>
           </div>
           <div className='flex flex-col bg-white shadow-lg rounded-sm w-[80%] h-fit px-24 py-16'>
 
@@ -164,9 +167,29 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
               <h1 className='text-2xl font-semibold text-black py-2 tracking-wide'>Additional Information</h1>
               <p className='text-lg tracking-tight text-[#595959] w-[60%]'>{job.additionalInformation}</p>
             </div>
-
           </div>
-
+        </div>
+      )}
+      {showModal && (
+        <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h2 className="text-2xl mb-3">Confirm Deletion</h2>
+            <p>Are you sure you want to delete this job?</p>
+            <div className="flex gap-2 justify-end mt-6">
+              <button
+                className="px-4 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md"
+                onClick={() => setShowModal(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300"
+                onClick={confirmDeleteJob}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -1,5 +1,8 @@
 import React from 'react'
 import skills from "../data/skills";
+import Search from '../assets/searchIcon.png';
+
+
 
 const QueryWidget = ({ query, setQuery, handleFetchJobs }) => {
 	const handleSkillChange = (skill) => {
@@ -29,13 +32,16 @@ const QueryWidget = ({ query, setQuery, handleFetchJobs }) => {
 	return (
 		<div className='flex justify-center items-center relative'>
 			<div className='w-[80%] h-fit py-12 px-5 shadow-xl shadow-[#f6c6c6] bg-white my-4 rounded-md'>
+				<div className='relative'>
 				<input
 					type="text"
 					placeholder="Type any job title"
-					className='mx-auto block w-[80%] px-4 py-2 border-2 border-[#E3E3E3] rounded-sm outline-none focus:ring-1 focus:ring-[#ED5353] focus:border-none'
+					className='mx-auto block w-[80%] px-12 py-2 border-2 border-[#E3E3E3] rounded-sm outline-none focus:ring-1 focus:ring-[#ED5353] focus:border-none'
 					value={query.title}
 					onChange={(e) => setQuery({ ...query, title: e.target.value })}
 				/>
+				<img className='absolute top-[0.875rem] left-[8.5rem] w-5 h-5' src={Search} alt="SearchIcon" />
+				</div>
 				<div className='absolute ml-[7.5rem] my-4 px-5 py-1 rounded-md border-2 border-[#CECECE] text-[#9C9C9C]'>
 					<select
 						onChange={(e) => handleSkillChange(e.target.value)}

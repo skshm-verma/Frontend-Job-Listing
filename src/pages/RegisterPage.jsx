@@ -4,6 +4,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import image1 from '../assets/imageRegister.png'
 
 const RegisterPage = ({ setCurrentUser }) => {
+
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -31,7 +32,10 @@ const RegisterPage = ({ setCurrentUser }) => {
             setErrors(errors);
             return;
         }
+        registerUser();
+    }
 
+    const registerUser = async () => {
         const response = await Register(name, email, mobile, password);
         if (response.status === 201) {
             const loginResponse = await Login(email, password);
@@ -46,6 +50,14 @@ const RegisterPage = ({ setCurrentUser }) => {
         }
     }
 
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            e.preventDefault();
+            handleRegister();
+        }
+    }
+
+
     return (
         <div className='flex'>
             <div className='w-[60%] flex justify-center items-center'>
@@ -59,6 +71,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             value={name}
                             onInput={(e) => setName(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            onKeyDown={handleKeyDown}
                         />
                         {errors.name && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.name}</div>}
                     </div>
@@ -69,6 +82,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             value={email}
                             onInput={(e) => setEmail(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            onKeyDown={handleKeyDown}
                         />
                         {errors.email && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.email}</div>}
                     </div>
@@ -79,11 +93,12 @@ const RegisterPage = ({ setCurrentUser }) => {
                             value={mobile}
                             onInput={(e) => setMobile(e.target.value)}
                             className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            onKeyDown={handleKeyDown}
                         />
                         {errors.mobile && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.mobile}</div>}
                     </div>
                     <div className='inline-block border-[#C2C2C2] pb-1'>
-                        <form>
+                        <form onKeyDown={handleKeyDown}>
                             <input
                                 type="password"
                                 placeholder='Password'
@@ -96,8 +111,8 @@ const RegisterPage = ({ setCurrentUser }) => {
                     </div>
                     <div className='mx-2 pb-2'>
                         <div className='flex justify-center items-center'>
-                        <input type="checkbox" name='terms&conditions' value={checkbox} onClick={() => setCheckbox(true)}/>
-                        <label htmlFor="terms&conditions" className='tracking-tight px-2 text-sm text-[#525252]'>By creating an account, I agree to our terms of use and privacy policy</label>
+                            <input type="checkbox" name='terms&conditions' value={checkbox} onClick={() => setCheckbox(true)} onKeyDown={handleKeyDown}/>
+                            <label htmlFor="terms&conditions" className='tracking-tight px-2 text-sm text-[#525252]'>By creating an account, I agree to our terms of use and privacy policy</label>
                         </div>
                         {errors.checkbox && <div className='text-sm my-1 text-[#ED5353]'>{errors.checkbox}</div>}
                     </div>

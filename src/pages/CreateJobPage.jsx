@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { Toaster, toast } from 'react-hot-toast';
 import CreateJobWallpaper from '../assets/jobWallpaper.png';
 import ChipsSelection from '../components/ChipsSelection';
+import { Tooltip } from 'react-tooltip';
 
 const CreateJobPage = () => {
 
@@ -20,7 +21,7 @@ const CreateJobPage = () => {
     jobType: "",
     salary: "",
     location: "",
-    duration: "Permanent",
+    duration: "11-50",
     locationType: "",
     information: "",
     skills: [],
@@ -53,7 +54,7 @@ const CreateJobPage = () => {
         jobType: "",
         salary: "",
         location: "",
-        duration: "Permanent",
+        duration: "11-50",
         locationType: "",
         information: "",
         skills: [],
@@ -82,7 +83,9 @@ const CreateJobPage = () => {
             />
           </div>
 
-          <div className='my-2 flex justify-start items-center'>
+          <div 
+          className='my-2 flex justify-start items-center' 
+          data-tooltip-id="my-tooltip" data-tooltip-content=".png, .jpg, .jpeg, .svg, .webp accepted formats">
             <label className='px-3 py-1 text-base font-semibold tracking-wide mr-4 font-dm w-1/4'>Add logo URL</label>
             <input
               type="text"
@@ -90,7 +93,9 @@ const CreateJobPage = () => {
               placeholder='Enter the link'
               className='border border-[#C2C2C2] outline-none rounded-md w-[65%] px-4 py-1 placeholder:text-[#ADADAD] placeholder:text-xs font-dm text-black text-sm'
               onChange={(e) => setJob({ ...job, logoUrl: e.target.value })}
+              
             />
+            <Tooltip id="my-tooltip" place="bottom-end" style={{ backgroundColor: "#FF6B6B", color: "white" }} />
           </div>
 
           <div className='my-2 flex justify-start items-center'>

@@ -1,12 +1,17 @@
 import React from 'react';
 import DefinedSkills from '../data/skills';
-import { useEffect, useState } from 'react';
+import { useState, useRef } from 'react';
 
 const ChipsSelection = ({ selectedSkills, setSelectedSkills }) => {
 	const [currentSkill, setCurrentSkill] = useState("");
 	const defaultSkills = DefinedSkills;
+	const inputRef = useRef(null);
+
 	const handleAddSkill = (skill) => {
 		setCurrentSkill(skill);
+		if (inputRef.current) {
+			inputRef.current.focus();
+		}
 	};
 
 	const handleOnKeyDown = (e) => {
@@ -48,6 +53,7 @@ const ChipsSelection = ({ selectedSkills, setSelectedSkills }) => {
 					type="text"
 					value={currentSkill}
 					placeholder='Enter the must have skills'
+					ref={inputRef}
 					onChange={(e) => handleAddSkill(e.target.value)}
 					onKeyDown={handleOnKeyDown}
 					className='border border-[#C2C2C2] outline-none rounded-md w-1/4 px-4 py-1 placeholder:text-[#ADADAD] placeholder:text-xs font-dm text-black text-sm'
