@@ -7,9 +7,18 @@ import axios from 'axios';
 //${BACKEND_ORIGIN_URL}/job/add
 //${BACKEND_ORIGIN_URL}/job/update/${job._id}
 //${BACKEND_ORIGIN_URL}/job/delete/${id}
+
+const BACKEND_URL = 'https://job-listing-api-three.vercel.app';
+
+const axiosInstance = axios.create({
+    baseURL: BACKEND_URL,
+    withCredentials: true, // Include credentials in requests
+});
+
+
 const fetchJobs = async () => {
     try {
-        const response = await axios.get(`https://job-listing-api-three.vercel.app/job`);
+        const response = await axiosInstance.get(`/job`);
         return response;
     } catch (error) {
         return error.response.data;
@@ -23,7 +32,7 @@ const fetchJobsByQuery = async (query) => {
         skills
     } = query;
     try {
-        const response = await axios.get(`https://job-listing-api-three.vercel.app/job`, {
+        const response = await axiosInstance.get(`/job`, {
             params: {
                 minSalary,
                 maxSalary,
@@ -39,7 +48,7 @@ const fetchJobsByQuery = async (query) => {
 
 const fetchJobById = async (id) => {
     try {
-        const response = await axios.get(`https://job-listing-api-three.vercel.app/job/${id}`);
+        const response = await axiosInstance.get(`/job/${id}`);
         return response;
     } catch (error) {
         return error;
@@ -54,7 +63,7 @@ const createJob = async (job) => {
                 Authorization: `Bearer ${token}`
             }
         };
-        const response = await axios.post(`https://job-listing-api-three.vercel.app/job/add`, job, config);
+        const response = await axiosInstance.post(`/job/add`, job, config);
         return response;
     } catch (error) {
         return error;
@@ -69,7 +78,7 @@ const editJob = async (job) => {
                 Authorization: `Bearer ${token}`
             }
         };
-       const response = await axios.put(`https://job-listing-api-three.vercel.app/job/update/${job._id}`, job, config);
+       const response = await axiosInstance.put(`/job/update/${job._id}`, job, config);
        return response;
     }catch(error){
         return error;
@@ -84,7 +93,7 @@ const deleteJob = async (id) => {
                 Authorization: `Bearer ${token}`
             }
         };
-        const response = await axios.delete(`https://job-listing-api-three.vercel.app/job/delete/${id}`, config);
+        const response = await axiosInstance.delete(`/job/delete/${id}`, config);
         return response;
     }catch(error){
         return error;

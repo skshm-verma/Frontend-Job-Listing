@@ -4,9 +4,18 @@ import axios from "axios";
 
 //${BACKEND_ORIGIN_URL}/user/login
 //${BACKEND_ORIGIN_URL}/user/register
+
+const BACKEND_URL = 'https://job-listing-api-three.vercel.app';
+
+const axiosInstance = axios.create({
+    baseURL: BACKEND_URL,
+    withCredentials: true, // Include credentials in requests
+});
+
+
 const Login = async (email, password) => {
     try {
-        const response = await axios.post(`https://job-listing-api-three.vercel.app/user/login`,{email , password});
+        const response = await axiosInstance.post('/user/login', { email, password });
         return response;
     } catch (error) {
         return error.response.data
@@ -15,7 +24,7 @@ const Login = async (email, password) => {
 
 const Register = async (name, email, mobile, password) => {
     try {
-        const response = await axios.post(`https://job-listing-api-three.vercel.app/user/register`,{name, email, mobile, password});
+        const response = await axiosInstance.post('/user/register', { name, email, mobile, password });
         return response;
     } catch (error) {
         return error.response.data
