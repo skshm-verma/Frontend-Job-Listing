@@ -50,10 +50,11 @@ const LoginPage = ({ setCurrentUser }) => {
     return (
         <div className='flex'>
             <Toaster position="top-center" reverseOrder={false} />
-            <div className='w-[60%] flex justify-center items-center'>
+            <div className='flex justify-center items-center w-screen h-screen lg:bg-white bg-[#FFEFEF]'>
+            <div className='lg:w-[60%] w-full flex justify-center items-center '>
                 <div className='flex flex-col items-start gap-2'>
-                    <h1 className='tracking-normal text-black font-semibold text-5xl py-1 font-dm'>Already have an account?</h1>
-                    <h2 className='tracking-tight text-[#525252] text-2xl pb-8'>Your personal job finder is here</h2>
+                    <h1 className='tracking-normal text-black font-semibold md:text-5xl text-3xl py-1 font-dm'>Already have an account?</h1>
+                    <h2 className='tracking-tight text-[#525252] md:text-2xl text-xl pb-8'>Your personal job finder is here</h2>
                     <div className='inline-block border-[#C2C2C2] pb-2'>
                         <input
                             type="email"
@@ -73,7 +74,7 @@ const LoginPage = ({ setCurrentUser }) => {
                                 value={password}
                                 onInput={(e) => setPassword(e.target.value)}
                                 className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
-                                
+
                             />
                         </form>
                         {errors.password && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.password}</div>}
@@ -90,9 +91,12 @@ const LoginPage = ({ setCurrentUser }) => {
                     </div>
                 </div>
             </div>
-            <div className='w-[40%] relative'>
-                <span className='absolute z-20 text-white right-28 top-12 text-4xl font-dm'>Your Personal Job Finder</span>
-                <img className='w-full h-screen' src={image1} alt="LandingPageImage" />
+            </div>
+            <div className='w-[40%] relative lg:block hidden'>
+                <div className='absolute w-full flex z-20 justify-center items-center top-10'>
+                    <span className='text-white text-4xl font-dm'>Your Personal Job Finder</span>
+                </div>
+                <img className='w-full h-screen'src={image1} alt="LandingPageImage" />
             </div>
             {redirectToHome && <Navigate to="/" />}
         </div>

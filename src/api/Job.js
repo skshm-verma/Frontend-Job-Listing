@@ -2,13 +2,6 @@ import axios from 'axios';
 
 const BACKEND_ORIGIN_URL = 'https://job-listing-api-tau.vercel.app';
 
-// const BACKEND_URL = 'https://job-listing-api-three.vercel.app';
-
-// const axiosInstance = axios.create({
-//     baseURL: BACKEND_URL,
-//     withCredentials: true, // Include credentials in requests
-// });
-
 const fetchJobs = async () => {
     try {
         const response = await axios.get(`${BACKEND_ORIGIN_URL}/job`);
