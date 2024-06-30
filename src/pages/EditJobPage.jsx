@@ -76,7 +76,7 @@ const EditJobPage = () => {
     return (
         <div className='flex items-center'>
             <Toaster position="top-center" reverseOrder={false} />
-            <div className='lg:w-[60%] w-full md:px-16 px-4 md:py-0 py-4 flex flex-col justify-start'>
+            <div className='lg:w-[60%] w-full md:bg-white bg-[#FFEFEF] md:px-16 px-4 md:py-0 py-4 flex flex-col justify-start'>
                 <h3 className='md:text-3xl text-xl text-black font-semibold tracking-wide md:mb-6 mb-4'>Add job description</h3>
 
                 <form onSubmit={handleJobCreate}>
@@ -193,7 +193,7 @@ const EditJobPage = () => {
                     <ChipsSelection selectedSkills={job.skills} setSelectedSkills={(skills) => setJob({ ...job, skills })} />
 
                     <div className='mt-6 mb-2 flex justify-start items-center'>
-                        <label className='px-3 py-1 md:mr-4 mr-2 md:text-base text-sm font-semibold tracking-wide font-dm w-1/4'>Information</label>
+                        <label className='px-3 py-1 mr-4 md:text-base text-sm font-semibold tracking-wide font-dm w-1/4'>Information</label>
                         <input
                             type="text"
                             value={job.additionalInformation}
@@ -206,7 +206,7 @@ const EditJobPage = () => {
                     <div className='flex justify-end md:mt-3 mt-6 md:px-12 px-4'>
                         <button
                             onClick={() => { navigate('/') }}
-                            className='md:mr-3 mr-2 md:px-11 px-8 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md'>Back</button>
+                            className='md:mr-3 mr-2 md:px-11 px-8 py-1 text-[#C2C2C2] text-base border border-[#CECECE] hover:bg-[#595959] hover:text-white hover:duration-300 rounded-md bg-white'>Back</button>
                         <button
                             type='submit'
                             className='md:mr-4 mr-3 md:px-4 px-2 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white text-base hover:duration-300'>Update Job</button>

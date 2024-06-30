@@ -62,10 +62,10 @@ const ChipsSelection = ({ selectedSkills, setSelectedSkills }) => {
 			<div className="md:w-[65%] md:ml-52 px-1 flex flex-wrap gap-2">
 				{selectedSkills?.map((skill, index) => {
 					return (
-						<div key={index} className="flex gap-1 items-center justify-start bg-[#FFEEEE] rounded-md text-xs">
+						<div key={index} className="flex gap-1 items-center justify-start md:bg-[#FFEEEE] bg-[#FF6B6B] rounded-md text-xs">
 							<span className='px-2 py-1'>{skill}</span>
 							<span
-								className="flex justify-center items-center cursor-pointer bg-[#FF6B6B] text-white px-2 py-1 rounded-r-md"
+								className="flex justify-center items-center cursor-pointer md:bg-[#FF6B6B] bg-[#ED5353] text-white px-2 py-1 rounded-r-md"
 								onClick={() => {
 									setSelectedSkills(selectedSkills.filter((s) => s !== skill));
 								}}

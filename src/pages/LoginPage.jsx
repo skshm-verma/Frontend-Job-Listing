@@ -52,16 +52,18 @@ const LoginPage = ({ setCurrentUser }) => {
             <Toaster position="top-center" reverseOrder={false} />
             <div className='flex justify-center items-center w-screen h-screen lg:bg-white bg-[#FFEFEF]'>
             <div className='lg:w-[60%] w-full flex justify-center items-center '>
-                <div className='flex flex-col items-start gap-2'>
+                <div className='flex flex-col md:items-start items-center gap-2'>
+                    <div className='flex flex-col justify-center items-center md:justify-center md:items-start md:gap-2 gap-1'>
                     <h1 className='tracking-normal text-black font-semibold md:text-5xl text-3xl py-1 font-dm'>Already have an account?</h1>
                     <h2 className='tracking-tight text-[#525252] md:text-2xl text-xl pb-8'>Your personal job finder is here</h2>
+                    </div>
                     <div className='inline-block border-[#C2C2C2] pb-2'>
                         <input
                             type="email"
                             placeholder='Email'
                             value={email}
                             onInput={(e) => setEmail(e.target.value)}
-                            className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            className='border mx-1 py-2 px-4 rounded-md md:w-[22rem] w-full focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                             onKeyDown={handleKeyDown}
                         />
                         {errors.email && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.email}</div>}
@@ -73,7 +75,7 @@ const LoginPage = ({ setCurrentUser }) => {
                                 placeholder='Password'
                                 value={password}
                                 onInput={(e) => setPassword(e.target.value)}
-                                className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                                className='border mx-1 py-2 px-4 rounded-md md:w-[22rem] w-full focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
 
                             />
                         </form>
@@ -81,9 +83,9 @@ const LoginPage = ({ setCurrentUser }) => {
                     </div>
                     <button
                         onClick={handleLogin}
-                        className='mb-2 block tracking-wider bg-[#ED5353] font-dm font-xl text-white mx-2 py-2 px-8 rounded-md hover:bg-[#f66565] duration-200'
+                        className='mb-2 block tracking-wider bg-[#ED5353] font-dm font-xl text-white mx-2 py-2 px-8 rounded-md hover:bg-[#f66565] duration-200 mx-auto md:mx-0'
                     >Sign In</button>
-                    <div className='mx-2'>
+                    <div className='md:mx-2 mx-auto'>
                         <span className='tracking-tight text-[#525252]'>Don’t have an account?</span>
                         <button
                             onClick={() => { navigate('/register') }}

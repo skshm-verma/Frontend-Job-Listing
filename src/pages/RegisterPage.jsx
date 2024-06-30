@@ -71,7 +71,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             placeholder='Name'
                             value={name}
                             onInput={(e) => setName(e.target.value)}
-                            className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            className='border mx-1 py-2 px-4 rounded-md md:w-[22rem] w-full focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                             onKeyDown={handleKeyDown}
                         />
                         {errors.name && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.name}</div>}
@@ -82,7 +82,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             placeholder='Email'
                             value={email}
                             onInput={(e) => setEmail(e.target.value)}
-                            className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            className='border mx-1 py-2 px-4 rounded-md md:w-[22rem] w-full focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                             onKeyDown={handleKeyDown}
                         />
                         {errors.email && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.email}</div>}
@@ -93,7 +93,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                             placeholder='Mobile'
                             value={mobile}
                             onInput={(e) => setMobile(e.target.value)}
-                            className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                            className='border mx-1 py-2 px-4 rounded-md md:w-[22rem] w-full focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                             onKeyDown={handleKeyDown}
                         />
                         {errors.mobile && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.mobile}</div>}
@@ -105,7 +105,7 @@ const RegisterPage = ({ setCurrentUser }) => {
                                 placeholder='Password'
                                 value={password}
                                 onInput={(e) => setPassword(e.target.value)}
-                                className='border mx-1 py-2 px-4 rounded-md w-[22rem] focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
+                                className='border mx-1 py-2 px-4 rounded-md md:w-[22rem] w-full focus:outline-none focus:ring-1 focus:ring-[#ED5353]'
                             />
                             {errors.password && <div className='text-sm mx-2 my-1 text-[#ED5353]'>{errors.password}</div>}
                         </form>

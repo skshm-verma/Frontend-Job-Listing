@@ -26,7 +26,7 @@ const JobCard = ({ job, currentUser }) => {
 				<div className='absolute bg-[#FF0000] rounded-s-lg w-1 h-full md:-translate-y-6 -translate-y-2 left-0 group-hover:visible invisible transition-all duration-75'></div>
 				<div className='flex'>
 					<div className='md:pt-6 md:p-2 md:px-6 px-8 py-5'>
-						<img className='md:h-16 md:w-16 h-16 w-32 rounded-md shadow-lg' src={logoUrl} alt={altJobIcon} />
+						<img className='md:h-16 md:w-16 h-14 w-32 rounded-md shadow-lg' src={logoUrl} alt={altJobIcon} />
 					</div>
 					<div className='flex w-[400px] flex-col justify-center items-start md:pb-4 md:mx-0 ml-1 md:text-base text-sm'>
 						<div className='pb-3 text-[#9C9C9C]'>

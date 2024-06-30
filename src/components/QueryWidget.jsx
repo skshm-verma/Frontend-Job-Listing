@@ -43,7 +43,7 @@ const QueryWidget = ({ query, setQuery, handleFetchJobs }) => {
 					<img className='absolute top-3 lg:left-[8.5rem] md:left-20 left-4 w-5 h-5' src={Search} alt="SearchIcon" />
 				</div>
 				<div className='md:block flex flex-col'>
-					<div className='md:absolute lg:ml-[7.5rem] md:ml-16 ml-2 md:w-fit w-[35%] my-4 lg:px-5 px-2 py-1 rounded-md border-2 border-[#CECECE] text-[#9C9C9C]'>
+					<div className='md:absolute lg:ml-[7.5rem] md:ml-16 ml-2 md:w-fit w-[35%] my-4 lg:px-5 px-0.5 py-1 rounded-md border-2 border-[#CECECE] text-[#9C9C9C]'>
 						<select
 							onChange={(e) => handleSkillChange(e.target.value)}
 							className='outline-none cursor-pointer md:text-lg text-sm'>

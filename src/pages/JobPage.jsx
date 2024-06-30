@@ -94,25 +94,29 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
       {job && (
         <div className='flex flex-col justify-center items-center mb-16'>
           <div className='w-[80%] md:h-40 h-20 bg-white flex justify-center items-center rounded-sm md:-translate-y-8  -translate-y-2 shadow-lg'>
-              <h1 className='w-[95%] px-4 tracking-wide md:text-4xl text-center'>{job.title}&nbsp;{job.locationType}&nbsp;{job.jobType}&nbsp;At&nbsp;{job.companyName}</h1>
+            <h1 className='w-[95%] px-4 tracking-wide md:text-4xl text-center'>{job.title}&nbsp;{job.locationType}&nbsp;{job.jobType}&nbsp;At&nbsp;{job.companyName}</h1>
           </div>
           <div className='flex flex-col bg-white shadow-lg rounded-sm w-[80%] h-fit md:px-24 md:py-16 py-4'>
 
             <div className='relative'>
-              <div className='flex items-center justify-center md:justify-start md:px-0 px-2'>
-                <p className='md:text-sm text-[0.5rem] text-[#999999] md:mx-1'>{timeElapsed(job.createdAt)}</p>
-                <p className='mx-2 text-[#999999] md:text-xl text-xs'>{job.jobType}</p>
-                <img className='md:w-20 md:h-20 w-8 h-8 shadow-lg rounded-full md:ml-8' src={job.logoUrl} alt="job logo" />
-                <p className='mx-4 md:text-xl text-sm text-[#999999]'>{job.companyName}</p>
+              <div className='flex md:items-center items-start justify-center md:justify-start md:px-0 px-2'>
+                <div className='flex flex-col md:flex-row justify-center items-start md:pt-0 pt-1'>
+                  <p className='md:text-sm text-[0.5rem] text-[#999999] md:mx-1'>{timeElapsed(job.createdAt)}</p>
+                  <p className='md:mx-2 text-[#999999] md:text-xl text-xs'>{job.jobType}</p>
+                </div>
+                <div className='flex justify-center items-center ml-4 md:ml-0'>
+                  <img className='md:w-20 md:h-20 w-8 h-8 shadow-lg rounded-full md:ml-8' src={job.logoUrl} alt="job logo" />
+                  <p className='mx-4 md:text-xl text-sm text-[#999999]'>{job.companyName}</p>
+                </div>
               </div>
 
               <div className='my-4 flex'>
                 <div className='md:w-[60%] flex flex-col gap-1'>
                   <h4 className='md:text-5xl text-2xl md:px-0 px-3'>{job.title}</h4>
-                  <p className='md:text-2xl text-lg text-[#ED5353] md:mt-4 px-3'>{job.location}</p>
+                  <p className='md:text-2xl text-lg text-[#ED5353] md:mt-4 md:px-0 px-3'>{job.location}</p>
                 </div>
                 {currentUser &&
-                  <div className='flex flex-col gap-2 justify-end items-center absolute right-4 md:bottom-12 bottom-8 md:mx-0 mx-1'>
+                  <div className='flex flex-col gap-2 justify-end items-center absolute right-4 md:bottom-12 bottom-3 md:mx-0 mx-1'>
                     <button
                       className='md:mx-6 md:px-7 px-5 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white md:text-lg text-xs hover:duration-300'
                       onClick={() => {
