@@ -54,8 +54,8 @@ const LoginPage = ({ setCurrentUser }) => {
             <div className='lg:w-[60%] w-full flex justify-center items-center '>
                 <div className='flex flex-col md:items-start items-center gap-2'>
                     <div className='flex flex-col justify-center items-center md:justify-center md:items-start md:gap-2 gap-1'>
-                    <h1 className='tracking-normal text-black font-semibold md:text-5xl text-3xl py-1 font-dm'>Already have an account?</h1>
-                    <h2 className='tracking-tight text-[#525252] md:text-2xl text-xl pb-8'>Your personal job finder is here</h2>
+                    <h1 className='tracking-normal text-black font-semibold md:text-5xl text-3xl py-1 font-dm md:mx-0 mx-auto'>Already have an account?</h1>
+                    <h2 className='tracking-tight text-[#525252] md:text-2xl text-xl pb-8 md:mx-0 mx-auto'>Your personal job finder is here</h2>
                     </div>
                     <div className='inline-block border-[#C2C2C2] pb-2'>
                         <input

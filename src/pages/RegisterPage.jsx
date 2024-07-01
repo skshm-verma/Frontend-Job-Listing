@@ -16,9 +16,14 @@ const RegisterPage = ({ setCurrentUser }) => {
 
     const validate = () => {
         const errors = {};
-
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        
         if (!name) errors.name = "Name is required";
-        if (!email) errors.email = "Email is required";
+        if (!email) {
+            errors.email = "Email is required";
+        } else if (!re.test(String(email).toLowerCase())) {
+            errors.email = "Email is invalid";
+        }
         if (!mobile) errors.mobile = "Mobile number is required";
         if (!password) errors.password = "Password is required";
         if (!checkbox) errors.checkbox = "You must agree to the terms";

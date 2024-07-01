@@ -118,7 +118,7 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
                 {currentUser &&
                   <div className='flex flex-col gap-2 justify-end items-center absolute right-4 md:bottom-12 bottom-3 md:mx-0 mx-1'>
                     <button
-                      className='md:mx-6 md:px-7 px-5 py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white md:text-lg text-xs hover:duration-300'
+                      className='md:mx-6 md:px-7 px-[1.125rem] py-1 shadow-md rounded-md border bg-[#ED5353] hover:bg-[#FF6B6B] text-white md:text-lg text-xs hover:duration-300'
                       onClick={() => {
                         navigate(`/edit/${jobID}`);
                       }}
