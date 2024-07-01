@@ -100,11 +100,11 @@ const JobPage = ({ currentUser, setCurrentUser, back, setBack }) => {
 
             <div className='relative'>
               <div className='flex md:items-center items-start justify-center md:justify-start md:px-0 px-2'>
-                <div className='flex flex-col md:flex-row justify-center items-start md:pt-0 pt-1'>
+                <div className='flex flex-col md:flex-row justify-center items-center md:pt-0 pt-1 sm:w-auto w-[30%]'>
                   <p className='md:text-sm text-[0.5rem] text-[#999999] md:mx-1'>{timeElapsed(job.createdAt)}</p>
                   <p className='md:mx-2 text-[#999999] md:text-xl text-xs'>{job.jobType}</p>
                 </div>
-                <div className='flex justify-center items-center ml-4 md:ml-0'>
+                <div className='flex justify-center items-center md:ml-0'>
                   <img className='md:w-20 md:h-20 w-8 h-8 shadow-lg rounded-full md:ml-8' src={job.logoUrl} alt="job logo" />
                   <p className='mx-4 md:text-xl text-sm text-[#999999]'>{job.companyName}</p>
                 </div>
