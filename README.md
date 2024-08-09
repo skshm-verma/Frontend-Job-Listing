@@ -30,8 +30,11 @@
 ## 🌐 Visuals
 **To open in a Browser:**  Use https://frontend-job-listing.vercel.app/ to open up the job finder app onto your browser window.
 
-<img src="./src/assets/Visual1.png" alt="Screenshot 1" width="600" height="400">
-<img src="./src/assets/Visual2.png" alt="Screenshot 2" width="600" height="400">
+![Visual1](https://github.com/user-attachments/assets/1f19a336-bba7-44a2-abc5-556220095e95)
+
+![Visual2](https://github.com/user-attachments/assets/3bc92b2e-1d58-423d-89ec-0d5049bd197c)
+
+![Visual3](https://github.com/user-attachments/assets/83b6bbbb-5233-4cc8-88d1-ac644e0c84cf)
 
 ## 🚀 Getting Started
 
